@@ -31,9 +31,9 @@ from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
-from gtts import gTTS 
-language = 'en'
-from playsound import playsound
+# from gtts import gTTS 
+# language = 'en'
+# from playsound import playsound
 
 model = ResNet50(weights='imagenet')
 model_new = Model(model.input, model.layers[-2].output)
@@ -123,14 +123,14 @@ def predict(img):
     fea_vec_test = np.reshape(fea_vec_test, fea_vec_test.shape[1])
     test_reshape = fea_vec_test.reshape(1,2048)
     text = greedySearch(test_reshape)
-    speech = gTTS(text = text, lang = language, slow = False)
-    speech.save('text.mp3')
+    #speech = gTTS(text = text, lang = language, slow = False)
+    #speech.save('text.mp3')
     
     return text
 
 
-with open("Caption/encoded_test_images.pkl", "rb") as encoded_pickle:
-    encoding_test = load(encoded_pickle)
+# with open("Caption/encoded_test_images.pkl", "rb") as encoded_pickle:
+#     encoding_test = load(encoded_pickle)
 
 #print("prediction is ",predict('sample_1.jpeg'))
 #print("prediction is ",predict('horse.jpg'))
